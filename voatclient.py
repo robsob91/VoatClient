@@ -185,8 +185,7 @@ class VoatClient(VoatAPIClient):
     specified otherwise
     """
     def __init__(self, apikey, secret=None, username=None, password=None,
-        third_party=False, auth_data=None, domain="preview-api.voat.co",
-        autoclean_titles=True):
+        third_party=False, auth_data=None, domain="voat.co", autoclean_titles=True):
         """ Initialize self
 
          * apikey: your public API key
@@ -201,12 +200,15 @@ class VoatClient(VoatAPIClient):
          * auth_data: bypass OAuth2 authentication and use this data
            instead, this is a dict, you can get it after successfully
            logging in once, it is the VoatClient.auth_data property
-         * domain: Voat's domain, change this to just voat.co when the
-           API is officially released
+         * domain: Voat's domain, use preview-api.voat.co for the test
+           site, voat.co for the real thing or your own domain if you
+           are hosting your own Voat clone
          * autoclean_titles: Voat only supports extended ASCII titles
            with no unprintable characters, this will try to approximate
            Unicode titles to their ASCII equivalents, remove redundant
-           whitespace and unprintable characters
+           whitespace and unprintable characters. Warning: it does not
+           produce good results when cleaning titles that use the
+           cyrillic alphabet
         """
         super(VoatClient, self).__init__("api/v1/", domain)
         self.apikey = apikey
