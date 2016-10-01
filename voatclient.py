@@ -712,17 +712,21 @@ class VoatClient(VoatAPIClient):
             method="DELETE")
 
     # Stream
-    def get_stream_submissions(self):
+    def get_stream_submissions(self, subverse=None):
         """ Returns a stream of submissions since the last call made to
         this endpoint. Used for live monitoring.
 
         Authentication Required
         """
+        if subverse is not None:
+            return self.call("stream/submissions/v/{}".format(subverse))
         return self.call("stream/submissions")
-    def get_stream_comments(self):
+    def get_stream_comments(self, subverse=None):
         """ Returns a stream of comments since the last call made to this
         endpoint. Used for live monitoring.
 
         Authentication Required
         """
+        if subverse is not None:
+            return self.call("stream/comments/v/{}".format(subverse))
         return self.call("stream/comments")
