@@ -233,6 +233,12 @@ class VoatClient(VoatAPIClient):
                     }, headers=headers
                 )
                 if "submit.Signin" not in s.text:
+                    if "invalid_permission" in s.text:
+                        raise VoatLogInError({
+                            "message": "Client not permitted login",
+                            "data": s,
+                            "type": "authorize error"
+                        })
                     raise VoatLogInError({
                         "message": "Invalid API key, make sure your API key has a Redirect Url configured",
                         "data": s,
