@@ -4,7 +4,7 @@ This is a Python wrapper for the Voat APIs, both the legacy and the new API. It 
 
 ## Known bugs
 
-Method `clean_title` of `VoatClient` does its best to convert Unicode to its  ASCII equivalent but the implementation is just a hack and Russian text is not properly converted. Better implementations are welcome.
+Method `clean_title` of `VoatClient` does its best to convert Unicode to its  ASCII equivalent but the implementation is just a hack and Cyrillic is not properly converted. Better implementations are welcome.
 
 ## Future
 
